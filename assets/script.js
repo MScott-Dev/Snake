@@ -55,7 +55,8 @@ const initGame = () => {
 
     if(gameOver) return handleGameOver();
 
-    let htmlMarkup = `<section class="food" style="grid-area: ${foodY} / ${foodX}"></section>`;
+    // let htmlMarkup = `<section class="food" style="grid-area: ${foodY} / ${foodX}"></section>`;
+    let htmlMarkup = `<img src="./assets/images/fresh-apple-icon.png" alt="Fresh-Apple-icon"  style="grid-area: ${foodY} / ${foodX}"></section>`;
 
     // checks if head hits food and adds to length
     if(snakeX === foodX && snakeY === foodY) {
