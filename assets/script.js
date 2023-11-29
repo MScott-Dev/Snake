@@ -2,6 +2,7 @@ const playBoard = document.querySelector('.play-board');
 
 let foodX, foodY;
 let snakeX = 5, snakeY = 10;
+let snakeBody = [];
 let velocityX = 0, velocityY = 0;
 
 // Randomly picks a grid area to put the food
@@ -31,11 +32,34 @@ const changeDirection = (e) => {
 const initGame = () => {
     let htmlMarkup = `<section class="food" style="grid-area: ${foodY} / ${foodX}"></section>`;
 
+    // checks if head hits food and adds to length
+    if(snakeX === foodX && snakeY === foodY) {
+        changeFoodLocation();
+        snakeBody.push([foodX, foodY]);
+    }
+
+
+    for (i = snakeBody.length - 1; i > 0; i--) {
+        snakeBody[i] = snakeBody[i -1];
+    }
+
+    // Settting the first snake part
+    snakeBody[0] = [snakeX, snakeY];
+
     // updates the snake's head
     snakeX += velocityX;
     snakeY += velocityY;
 
-    htmlMarkup += `<section class="snakeHead" style="grid-area: ${snakeY} / ${snakeX}"></section>`;
+    for (let i = 0; i < snakeBody.length; i++) {
+        // adds section for each body part
+        htmlMarkup += `<section class="snakeHead" style="grid-area: ${snakeBody[i][1]} / ${snakeBody[i][0]}"></section>`;
+    }
+
+    if(snakeX <= 0 || snakeX > 30 || snakeY <= 0 || snakeY > 30) {
+        console.log("Game over!");
+    }
+
+   
     playBoard.innerHTML = htmlMarkup;
 };
 
