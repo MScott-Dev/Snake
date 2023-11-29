@@ -42,5 +42,9 @@ body {
 }
 
 .play-board .food {
-    background-color: rgb(80, 150, 40);
+    background-color: rgb(187, 20, 62);
+}
+
+.play-board .snakeHead {
+    background-color: rgb(7, 177, 30);
 }
