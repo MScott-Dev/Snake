@@ -1,4 +1,7 @@
 const playBoard = document.querySelector('.play-board');
+const scoreboard = document.querySelector(".score");
+const highScoreBoard = document.querySelector(".highscore")
+const controls = document.querySelectorAll(".controls i")
 
 let foodX, foodY;
 let snakeX = 5, snakeY = 10;
@@ -6,6 +9,11 @@ let snakeBody = [];
 let velocityX = 0, velocityY = 0;
 let gameOver = false;
 let setIntervalId;
+let score = 0;
+
+// Gets highscore from storage
+let highScore = localStorage.getItem("high-score") || 0;
+highScoreBoard.textContent = `High Score: ${highScore}`;
 
 // Randomly picks a grid area to put the food
 const changeFoodLocation = () => {
@@ -37,6 +45,11 @@ const changeDirection = (e) => {
     }
 }
 
+// Gets the data set based on button clicked then pass it into changeDirection function as an object
+controls.forEach(key => {
+    key.addEventListener('click', () => changeDirection({ key: key.dataset.key }));
+})
+
 // Starts the game. Places the head and randomly picks food location
 const initGame = () => {
 
@@ -48,6 +61,12 @@ const initGame = () => {
     if(snakeX === foodX && snakeY === foodY) {
         changeFoodLocation();
         snakeBody.push([foodX, foodY]);
+        score++;
+
+        highScore = score >= highScore ? score : highScore;
+        localStorage.setItem("high-score", highScore);
+        scoreboard.textContent = `Score: ${score}`;
+        highScoreBoard.textContent = `High Score: ${highScore}`;
     }
 
 
