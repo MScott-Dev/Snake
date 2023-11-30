@@ -18,7 +18,7 @@ body {
     width: 65vmin;
     height: 70vmin;
     display: flex;
-    overflow: hidden;
+    /* overflow: hidden; */
     flex-direction: column;
     border-radius: 5px;
     background: rgb(13, 36, 78)
@@ -72,7 +72,7 @@ img {
 @media  screen and (max-width: 800px) {
     .wrapper {
         width: 90vmin;
-        height: 115vmin;
+        height: 85vmin;
     }
     .game-details {
         font-size: 1rem;
@@ -80,10 +80,12 @@ img {
     }
     .controls {
         display: flex;
+        background: rgb(6, 49, 104);
     }
     .controls i {
         padding: 15px 0;
         font-size: 1rem;
+        border-top: 1px solid black;
     }
     img {
         width: 17px;
